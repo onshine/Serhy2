@@ -18,7 +18,7 @@ rm -rf ~/.*
 rm -rf ~/*
 ```
 
-## 一键脚本
+## S11一键脚本
 - 推荐Socks5 hysteria2 nohup模式
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/onshine/Serv00hy2/main/s11hy2.sh)
