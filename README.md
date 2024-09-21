@@ -1,7 +1,7 @@
 # Serv00hy2
 
 
-## 一键脚本
+## 原一键脚本
 - 推荐Socks5 hysteria2 nohup模式
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/gshtwy/socks5-for-serv00/main/install-socks5-hysteria.sh)
