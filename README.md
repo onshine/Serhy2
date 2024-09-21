@@ -36,6 +36,11 @@ https://raw.githubusercontent.com/onshine/Serv00hy2/refs/heads/main/2-S10.sh
 bash <(curl -s https://raw.githubusercontent.com/onshine/Serv00hy2/main/2S10.sh)
 ```
 
+```bash
+bash <(curl -s https://raw.githubusercontent.com/onshine/Serv00hy2/main/s10hy2.sh)
+```
+
+
 
 ## S2一键脚本
 - 推荐Socks5 hysteria2 nohup模式
