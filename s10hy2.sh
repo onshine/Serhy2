@@ -8,12 +8,12 @@ HYSTERIA_DIR="/usr/home/hysteria"
 # 创建目录
 mkdir -p $HYSTERIA_DIR
 
-# 下载 Hysteria2 二进制文件
+# 检测系统架构并选择合适的 Hysteria2 二进制文件
 ARCH=$(uname -m)
-if [[ "$ARCH" == "x86_64" ]]; then
-    DOWNLOAD_URL="https://github.com/apernet/hysteria/releases/download/v2.0.0/hysteria-linux-amd64"
-elif [[ "$ARCH" == "aarch64" ]]; then
+if [[ "$ARCH" == "aarch64" ]]; then
     DOWNLOAD_URL="https://github.com/apernet/hysteria/releases/download/v2.0.0/hysteria-linux-arm64"
+elif [[ "$ARCH" == "armv7l" ]]; then
+    DOWNLOAD_URL="https://github.com/apernet/hysteria/releases/download/v2.0.0/hysteria-linux-arm"
 else
     echo "不支持的系统架构: $ARCH"
     exit 1
