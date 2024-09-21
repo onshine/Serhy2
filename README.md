@@ -33,7 +33,7 @@ https://raw.githubusercontent.com/onshine/Serv00hy2/refs/heads/main/2-S10.sh
 - 推荐Socks5 hysteria2 nohup模式
 - PORT=UDP端口 bash <(curl -Ls https://00.2go.us.kg/2.sh)
 ```bash
-PORT=32710 bash <(curl -Ls https://raw.githubusercontent.com/onshine/Serv00hy2/main/2-S10.sh)
+bash <(curl -s https://raw.githubusercontent.com/onshine/Serv00hy2/main/2-S10.sh)
 ```
 
 
