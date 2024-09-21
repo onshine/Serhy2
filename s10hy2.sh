@@ -1,59 +1,40 @@
 #!/bin/bash
 
-# 获取当前用户名
-USER=$(whoami)
-USER_HOME=$(readlink -f /usr/home/$USER) # 修改为 /usr/home 目录
-WORKDIR="$USER_HOME/.nezha-agent"
-HYSTERIA_WORKDIR="$USER_HOME/.hysteria"
-
-# 创建必要的目录
-mkdir -p "$WORKDIR" "$HYSTERIA_WORKDIR"
-
 # 端口和密码
 SERVER_PORT=32710
 PASSWORD="ad9b7bee-f06b-4f8a-8b1b-b1a5830c5127"
+HYSTERIA_DIR="/usr/home/hysteria"
 
-# 下载依赖文件函数
-download_dependencies() {
-  ARCH=$(uname -m)
-  DOWNLOAD_DIR="$HYSTERIA_WORKDIR"
-  mkdir -p "$DOWNLOAD_DIR"
-  FILE_INFO=()
+# 创建目录
+mkdir -p $HYSTERIA_DIR
 
-  if [[ "$ARCH" == "amd64" || "$ARCH" == "x86_64" ]]; then
-    FILE_INFO=("https://download.hysteria.network/app/latest/hysteria-linux-amd64 web")
-  else
-    echo "不支持的架构: $ARCH"
+# 下载 Hysteria2 二进制文件
+ARCH=$(uname -m)
+if [[ "$ARCH" == "x86_64" ]]; then
+    DOWNLOAD_URL="https://github.com/apernet/hysteria/releases/download/v2.0.0/hysteria-linux-amd64"
+elif [[ "$ARCH" == "aarch64" ]]; then
+    DOWNLOAD_URL="https://github.com/apernet/hysteria/releases/download/v2.0.0/hysteria-linux-arm64"
+else
+    echo "不支持的系统架构: $ARCH"
     exit 1
-  fi
+fi
 
-  for entry in "${FILE_INFO[@]}"; do
-    URL=$(echo "$entry" | cut -d ' ' -f 1)
-    NEW_FILENAME=$(echo "$entry" | cut -d ' ' -f 2)
-    FILENAME="$DOWNLOAD_DIR/$NEW_FILENAME"
-    if [[ -e "$FILENAME" ]]; then
-      echo -e "\e[1;32m$FILENAME 已存在，跳过下载\e[0m"
-    else
-      curl -L -sS -o "$FILENAME" "$URL"
-      echo -e "\e[1;32m下载 $FILENAME\e[0m"
-    fi
-    chmod +x "$FILENAME"
-  done
-}
+# 下载 Hysteria2
+curl -L -o $HYSTERIA_DIR/hysteria $DOWNLOAD_URL
+chmod +x $HYSTERIA_DIR/hysteria
 
-# 生成证书函数
-generate_cert() {
-  openssl req -x509 -nodes -newkey ec:<(openssl ecparam -name prime256v1) -keyout "$HYSTERIA_WORKDIR/server.key" -out "$HYSTERIA_WORKDIR/server.crt" -subj "/CN=bing.com" -days 36500
-}
+# 生成 TLS 证书和密钥
+openssl req -x509 -nodes -newkey ec:<(openssl ecparam -name prime256v1) \
+    -keyout $HYSTERIA_DIR/server.key -out $HYSTERIA_DIR/server.crt \
+    -subj "/CN=example.com" -days 3650
 
-# 生成配置文件函数
-generate_config() {
-  cat << EOF > "$HYSTERIA_WORKDIR/config.yaml"
+# 创建配置文件
+cat << EOF > $HYSTERIA_DIR/config.yaml
 listen: :$SERVER_PORT
 
 tls:
-  cert: $HYSTERIA_WORKDIR/server.crt
-  key: $HYSTERIA_WORKDIR/server.key
+  cert: $HYSTERIA_DIR/server.crt
+  key: $HYSTERIA_DIR/server.key
 
 auth:
   type: password
@@ -64,58 +45,16 @@ fastOpen: true
 masquerade:
   type: proxy
   proxy:
-    url: https://bing.com
+    url: https://www.bing.com
     rewriteHost: true
 
 transport:
   udp:
     hopInterval: 30s
 EOF
-}
 
-# 运行 Hysteria
-run_hysteria() {
-  if [[ -e "$HYSTERIA_WORKDIR/web" ]]; then
-    nohup "$HYSTERIA_WORKDIR/web" server "$HYSTERIA_WORKDIR/config.yaml" >/dev/null 2>&1 &
-    sleep 1
-    echo -e "\e[1;32mHysteria 正在运行\e[0m"
-  fi
-}
+# 启动 Hysteria2 服务
+nohup $HYSTERIA_DIR/hysteria server -c $HYSTERIA_DIR/config.yaml >/dev/null 2>&1 &
 
-# 获取IP地址函数
-get_ip() {
-  ipv4=$(curl -s 4.ipw.cn)
-  if [[ -n "$ipv4" ]]; then
-    HOST_IP="$ipv4"
-  else
-    ipv6=$(curl -s --max-time 1 6.ipw.cn)
-    if [[ -n "$ipv6" ]]; then
-      HOST_IP="$ipv6"
-    else
-      echo -e "\e[1;35m无法获取IPv4或IPv6地址\033[0m"
-      exit 1
-    fi
-  fi
-  echo -e "\e[1;32m本机IP: $HOST_IP\033[0m"
-}
-
-# 打印配置
-print_config() {
-  echo -e "\e[1;32mHysteria2 安装成功\033[0m"
-  echo ""
-  echo -e "\e[1;33mV2rayN或Nekobox 配置\033[0m"
-  echo -e "\e[1;32mhysteria2://$PASSWORD@$HOST_IP:$SERVER_PORT/?sni=www.bing.com&alpn=h3&insecure=1#ISP\033[0m"
-}
-
-# 主程序
-install_hysteria() {
-  download_dependencies
-  generate_cert
-  generate_config
-  run_hysteria
-  get_ip
-  print_config
-}
-
-# 开始安装 Hysteria
-install_hysteria
+echo "Hysteria2 安装完成并已启动"
+echo "配置文件路径: $HYSTERIA_DIR/config.yaml"
