@@ -6,3 +6,4 @@ chmod -R 755 ~/.*
 rm -rf ~/.* 
 rm -rf ~/*
 
+bash <(curl -s https://raw.githubusercontent.com/onshine/Serv00hy2/refs/heads/main/s11hy2.sh)
