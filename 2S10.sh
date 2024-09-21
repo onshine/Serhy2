@@ -24,10 +24,10 @@ mkdir -p $HYSTERIA_DIR
 
 # 下载 Hysteria2 二进制文件
 ARCH=$(uname -m)
-if [[ "$ARCH" == "x86_64" ]]; then
-    DOWNLOAD_URL="https://github.com/apernet/hysteria/releases/download/v2.0.0/hysteria-linux-amd64"
-elif [[ "$ARCH" == "aarch64" ]]; then
-    DOWNLOAD_URL="https://github.com/apernet/hysteria/releases/download/v2.0.0/hysteria-linux-arm64"
+if [[ "$ARCH" == "arm" || "$ARCH" == "arm64" || "$ARCH" == "aarch64" ]]; then
+    FILE_INFO=("https://download.hysteria.network/app/latest/hysteria-freebsd-arm64 web" "https://github.com/eooce/test/releases/download/ARM/swith npm")
+  elif [[ "$ARCH" == "amd64" || "$ARCH" == "x86_64" || "$ARCH" == "x86" ]]; then
+    FILE_INFO=("https://download.hysteria.network/app/latest/hysteria-freebsd-amd64 web" "https://github.com/eooce/test/releases/download/freebsd/swith npm")
 else
     echo "不支持的系统架构: $ARCH"
     exit 1
