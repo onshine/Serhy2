@@ -1,50 +1,47 @@
-#!/bin/sh
+#!/bin/bash
 
-# 设置端口和密码
+# 介绍信息
+{
+    echo -e "\e[92m" 
+    echo "通往电脑的路不止一条，所有的信息都应该是免费的，打破电脑特权，在电脑上创造艺术和美，计算机将使生活更美好。"
+    echo "    ______                   _____               _____         "
+    echo "    ___  /_ _____  ____________  /______ ___________(_)______ _"
+    echo "    __  __ \\__  / / /__  ___/_  __/_  _ \\__  ___/__  / _  __ \`/"
+    echo "    _  / / /_  /_/ / _(__  ) / /_  /  __/_  /    _  /  / /_/ / "
+    echo "    /_/ /_/ _\\__, /  /____/  \\__/  \\___/ /_/     /_/   \\__,_/  "
+    echo "            /____/                                              "
+    echo "缝合怪：天诚 原作者们：cmliu RealNeoMan、k0baya、eooce"
+    echo -e "\e[0m"  
+}
+
+# 变量定义
 SERVER_PORT=32710
 PASSWORD="ad9b7bee-f06b-4f8a-8b1b-b1a5830c5127"
 HYSTERIA_DIR="/usr/home/hysteria"
 
-# 确保使用 sudo 执行脚本
-if [ "$(id -u)" -ne 0 ]; then
-  echo "请使用 sudo 执行此脚本"
-  exit 1
-fi
-
-# 创建目录并确保有正确的权限
+# 创建必要的目录
 mkdir -p $HYSTERIA_DIR
-chown $(whoami) $HYSTERIA_DIR
-chmod 755 $HYSTERIA_DIR
-
-# 安装必要工具 (pkg 前需要先 bootstrap，确保 pkg 管理器正常工作)
-if ! command -v pkg >/dev/null 2>&1; then
-  echo "正在引导 pkg 管理器..."
-  /usr/sbin/pkg bootstrap -y
-fi
-
-pkg install -y wget openssl
 
 # 下载 Hysteria2 二进制文件
 ARCH=$(uname -m)
-if [ "$ARCH" = "amd64" ]; then
-    DOWNLOAD_URL="https://github.com/apernet/hysteria/releases/download/v2.0.0/hysteria-freebsd-amd64"
-elif [ "$ARCH" = "aarch64" ]; then
-    DOWNLOAD_URL="https://github.com/apernet/hysteria/releases/download/v2.0.0/hysteria-freebsd-arm64"
+if [[ "$ARCH" == "x86_64" ]]; then
+    DOWNLOAD_URL="https://github.com/apernet/hysteria/releases/download/v2.0.0/hysteria-linux-amd64"
+elif [[ "$ARCH" == "aarch64" ]]; then
+    DOWNLOAD_URL="https://github.com/apernet/hysteria/releases/download/v2.0.0/hysteria-linux-arm64"
 else
     echo "不支持的系统架构: $ARCH"
     exit 1
 fi
 
-# 下载 Hysteria2 并设置权限
-wget -O $HYSTERIA_DIR/hysteria $DOWNLOAD_URL
+curl -L -o $HYSTERIA_DIR/hysteria $DOWNLOAD_URL
 chmod +x $HYSTERIA_DIR/hysteria
 
-# 生成 TLS 证书和私钥
+# 生成 TLS 证书和密钥
 openssl req -x509 -nodes -newkey ec:<(openssl ecparam -name prime256v1) \
     -keyout $HYSTERIA_DIR/server.key -out $HYSTERIA_DIR/server.crt \
     -subj "/CN=example.com" -days 3650
 
-# 创建配置文件
+# 创建 Hysteria2 配置文件
 cat << EOF > $HYSTERIA_DIR/config.yaml
 listen: :$SERVER_PORT
 
