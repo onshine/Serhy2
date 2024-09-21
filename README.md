@@ -18,4 +18,8 @@ rm -rf ~/.*
 rm -rf ~/*
 ```
 
-bash <(curl -s https://raw.githubusercontent.com/onshine/Serv00hy2/refs/heads/main/s11hy2.sh)
+## 一键脚本
+- 推荐Socks5 hysteria2 nohup模式
+```bash
+bash <(curl -s https://raw.githubusercontent.com/onshine/Serv00hy2/main/s11hy2.sh)
+```
