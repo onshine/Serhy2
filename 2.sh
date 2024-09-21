@@ -1,10 +1,10 @@
 #!/bin/bash
 export LC_ALL=C
-export UUID=${UUID:-'fc44fe6a-f083-4591-9c03-f8d61dc3907f'} 
-export NEZHA_SERVER=${NEZHA_SERVER:-''}      
+export UUID=${UUID:-'5500f193-9ba7-4eef-b3c5-6d5d84849b0b'} 
+export NEZHA_SERVER=${NEZHA_SERVER:-'tz.jssz.eu.org'}      
 export NEZHA_PORT=${NEZHA_PORT:-'5555'}             
-export NEZHA_KEY=${NEZHA_KEY:-''}                
-export PORT=${PORT:-'10000'} 
+export NEZHA_KEY=${NEZHA_KEY:-'zncRFrf5iQJPD671ol'}                
+export PORT=${PORT:-'32710'} 
 USERNAME=$(whoami)
 HOSTNAME=$(hostname)
 
