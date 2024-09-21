@@ -19,17 +19,17 @@ export LC_ALL=C
 USERNAME=$(whoami)
 HOSTNAME=$(hostname)
 
-export UUID=${UUID:-'275f3924-f694-47b0-9620-240c393bc9c3'}
+export UUID=${UUID:-'ad9b7bee-f06b-4f8a-8b1b-b1a5830c5127'}
 
 export ARGO_DOMAIN=${ARGO_DOMAIN:-'serv11.jaxmike.nyc.mn'}   
-export ARGO_AUTH=${ARGO_AUTH:-'eyJhIjoiN2QzZTQ2YjIzYzllYmM5ODQxYjI1MTkyN2I2NjA4NmMiLCJ0IjoiMjU0NmE2Y2MtOTEwNS00NDAwLThmMjQtY2FkOTYzM2M1YjUzIiwicyI6Ik1qWXhNV014WmprdFptVTFPQzAwWm1JMXSXlZekV0Tm1Oa00yTm1abVU0TVRRMyJ9'}
-export VMESS_PORT=${VMESS_PORT:-'10141'}
-export HY2_PORT=${HY2_PORT:-''}
+export ARGO_AUTH=${ARGO_AUTH:-''}
+export VMESS_PORT=${VMESS_PORT:-''}
+export HY2_PORT=${HY2_PORT:-'32710'}
 export TUIC_PORT=${TUIC_PORT:-''}
 
-export NEZHA_SERVER=${NEZHA_SERVER:-'s9-wolverine.serv00.net'} 
-export NEZHA_PORT=${NEZHA_PORT:-'27135'}     
-export NEZHA_KEY=${NEZHA_KEY:-'s9nkq3GXrHSvNDn'} 
+export NEZHA_SERVER=${NEZHA_SERVER:-'tz.jssz.eu.org'} 
+export NEZHA_PORT=${NEZHA_PORT:-'5555'}     
+export NEZHA_KEY=${NEZHA_KEY:-'zncRFrf5iQJPD671ol'} 
 
 export CFIP=${CFIP:-'www.visa.com.tw'} 
 export CFPORT=${CFPORT:-'443'} 
