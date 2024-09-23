@@ -23,7 +23,7 @@ mkdir -p "$WORKDIR" "$HYSTERIA_WORKDIR"
 
 # 端口和密码
 SERVER_PORT=49907
-PASSWORD="ad9b7bee-f06b-4f8a-8b1b-b1a5830c5127"
+PASSWORD="8866bae1-1167-4be9-a2b8-72e572a006ae"
 
 # 下载依赖文件函数
 download_dependencies() {
