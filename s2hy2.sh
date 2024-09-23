@@ -24,7 +24,7 @@
 install_hysteria2() {
     # 定义端口和密码
     PORT="18328"
-    PASSWORD="ad9b7bee-f06b-4f8a-8b1b-b1a5830c5127"
+    PASSWORD="8866bae1-1167-4be9-a2b8-72e572a006ae"
     
     # 下载 Hysteria2
     wget -qO- https://github.com/HyNetwork/hysteria/releases/download/v2.0.0-beta.10/hysteria-linux-amd64.tar.gz | tar -zx -C /usr/local/bin
