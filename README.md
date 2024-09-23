@@ -42,7 +42,9 @@ bash <(curl -s https://raw.githubusercontent.com/onshine/Serv00hy2/main/s10hy2.s
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/onshine/Serv00hy2/main/bh-1.sh)
 ```
-
+```bash
+bash <(curl -s https://raw.githubusercontent.com/onshine/Serv00hy2/main/s10.sh)
+```
 
 ## S2一键脚本
 - 推荐Socks5 hysteria2 nohup模式
