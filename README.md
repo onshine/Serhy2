@@ -1,4 +1,4 @@
-# Serv00hy2
+# Serhy2
 
 
 ## 原一键脚本
@@ -21,15 +21,15 @@ rm -rf ~/*
 ## S11一键脚本
 - 推荐Socks5 hysteria2 nohup模式
 ```
-bash <(curl -s https://raw.githubusercontent.com/onshine/Serv00hy2/main/s11.sh)
+bash <(curl -s https://raw.githubusercontent.com/onshine/Serhy2/main/s11.sh)
 ```
 
 ## S10一键脚本
 ```
-bash <(curl -s https://raw.githubusercontent.com/onshine/Serv00hy2/main/s10.sh)
+bash <(curl -s https://raw.githubusercontent.com/onshine/Serhy2/main/s10.sh)
 ```
 
 ## S2一键脚本
 ```
-bash <(curl -s https://raw.githubusercontent.com/onshine/Serv00hy2/main/s2.sh)
+bash <(curl -s https://raw.githubusercontent.com/onshine/Serhy2/main/s2.sh)
 ```
