@@ -19,7 +19,7 @@ export LC_ALL=C
 USERNAME=$(whoami)
 HOSTNAME=$(hostname)
 
-export UUID=${UUID:-'ad9b7bee-f06b-4f8a-8b1b-b1a5830c5127'}
+export UUID=${UUID:-'8866bae1-1167-4be9-a2b8-72e572a006ae'}
 
 export ARGO_DOMAIN=${ARGO_DOMAIN:-'serv11.jaxmike.nyc.mn'}   
 export ARGO_AUTH=${ARGO_AUTH:-''}
