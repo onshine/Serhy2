@@ -4,7 +4,7 @@ export UUID=${UUID:-'9de16889-a54a-4f43-ae5e-30529b78e110'}
 export NEZHA_SERVER=${NEZHA_SERVER:-'tz.jssz.eu.org'}      
 export NEZHA_PORT=${NEZHA_PORT:-'5555'}             
 export NEZHA_KEY=${NEZHA_KEY:-'FfdZxlBA6bPdVVFoYt'}                
-export PORT=${PORT:-'55599'} 
+export PORT=${PORT:-'22815'} 
 USERNAME=$(whoami)
 HOSTNAME=$(hostname)
 
