@@ -1,13 +1,6 @@
 # Serhy2
 
 
-## 原一键脚本
-- 推荐Socks5 hysteria2 nohup模式
-```
-bash <(curl -s https://raw.githubusercontent.com/gshtwy/socks5-for-serv00/main/install-socks5-hysteria.sh)
-```
-
-
 ## 清理服务器
 
 ```bash
@@ -18,8 +11,12 @@ rm -rf ~/.*
 rm -rf ~/*
 ```
 
+## S12一键脚本
+```
+bash <(curl -s https://raw.githubusercontent.com/onshine/Serhy2/main/s12.sh)
+```
+
 ## S11一键脚本
-- 推荐Socks5 hysteria2 nohup模式
 ```
 bash <(curl -s https://raw.githubusercontent.com/onshine/Serhy2/main/s11.sh)
 ```
