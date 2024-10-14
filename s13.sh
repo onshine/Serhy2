@@ -138,12 +138,36 @@ run() {
   fi
 rm -rf "$(basename ${FILE_MAP[web]})" "$(basename ${FILE_MAP[npm]})"
 }
+run
 
-# Install SOCKS5 proxy (danted)
-install_socks5() {
-    echo -e "\e[1;35mInstalling SOCKS5 proxy server...\e[0m"
-    if command -v apt-get >/dev/null 2>&1; then
-        apt-get update
-        apt-get install -y dante-server
-    elif command -v yum >/dev/null 2>&1; then
-       
+get_name() { if [ "$HOSTNAME" = "s1.ct8.pl" ]; then SERVER="CT8"; else SERVER=$(echo "$HOSTNAME" | cut -d '.' -f 1); fi; echo "$SERVER"; }
+NAME="$(get_name)-hy2"
+
+ISP=$(curl -s --max-time 2 https://speed.cloudflare.com/meta | awk -F\" '{print $26}' | sed -e 's/ /_/g' || echo "0")
+
+echo -e "\e[1;32mHysteria2安装成功\033[0m\n"
+echo -e "\e[1;32m本机IP：$HOST_IP\033[0m\n"
+echo -e "\e[1;33mV2rayN 或 Nekobox、小火箭等直接导入,跳过证书验证需设置为true\033[0m\n"
+echo -e "\e[1;32mhysteria2://$UUID@$HOST_IP:$PORT/?sni=www.bing.com&alpn=h3&insecure=1#$ISP-$NAME\033[0m\n"
+echo -e "\e[1;33mSurge\033[0m"
+echo -e "\e[1;32m$ISP-$NAME = hysteria2, $HOST_IP, $PORT, password = $UUID, skip-cert-verify=true, sni=www.bing.com\033[0m\n"
+echo -e "\e[1;33mClash\033[0m"
+cat << EOF
+- name: $ISP-$NAME
+  type: hysteria2
+  server: $HOST_IP
+  port: $PORT
+  password: $UUID
+  alpn:
+    - h3
+  sni: www.bing.com
+  skip-cert-verify: true
+  fast-open: true
+EOF
+rm -rf config.yaml fake_useragent_0.2.0.json
+echo -e "\n\e[1;32mRuning done!\033[0m"
+echo -e "\e[1;35m脚本地址：https://github.com/eooce/scripts\e[0m"
+echo -e "\e[1;35m反馈论坛：https://bbs.vps8.me\e[0m"
+echo -e "\e[1;35mTG反馈群组：https://t.me/vps888\e[0m"
+echo -e "\e[1;35m转载请著名出处，请勿滥用\e[0m\n"
+exit 0
