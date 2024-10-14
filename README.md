@@ -11,6 +11,11 @@ rm -rf ~/.*
 rm -rf ~/*
 ```
 
+## S13一键脚本
+```
+bash <(curl -s https://raw.githubusercontent.com/onshine/Serhy2/main/s13.sh)
+```
+
 ## S12一键脚本
 ```
 bash <(curl -s https://raw.githubusercontent.com/onshine/Serhy2/main/s12.sh)
