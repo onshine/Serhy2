@@ -23,7 +23,7 @@ bash <(curl -s https://raw.githubusercontent.com/cmliu/socks5-for-serv00/main/in
 bash <(curl -s https://raw.githubusercontent.com/onshine/Serhy2/main/s15-3281.sh)
 ```
 ```
-bash <(curl -s https://raw.githubusercontent.com/onshine/Serhy2/main/s15-04151.sh)
+bash <(curl -s https://raw.githubusercontent.com/onshine/Serhy2/main/s15-0415.sh)
 ```
 ## S14一键脚本
 ```
